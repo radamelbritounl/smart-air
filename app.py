@@ -264,13 +264,21 @@ def plot_daily():
 
 @app.route("/api/readings", methods=["GET", "POST"])
 def api_readings():
-    data = request.get_json(silent=True) or request.values
-    reading = SensorReading(
-        mq_raw=float(data.get("mq_raw", 0)),
-        uv_raw=float(data.get("uv_raw", 0)),
-        voltage=float(data.get("voltage", 5.0)),
-    )
-    return jsonify(store.add(reading)), 201
+    try:
+        data = request.get_json(silent=True) or request.values
+        reading = SensorReading(
+            mq_raw=float(data.get("mq_raw", 0)),
+            uv_raw=float(data.get("uv_raw", 0)),
+            voltage=float(data.get("voltage", 5.0)),
+        )
+        return jsonify(store.add(reading)), 201
+    except Exception as exc:
+        return jsonify(
+            {
+                "error": "No se pudo guardar la lectura",
+                "detail": str(exc),
+            }
+        ), 500
 
 
 def svg_chart(rows: list[dict], title: str) -> str:

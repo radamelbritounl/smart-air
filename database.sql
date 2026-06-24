@@ -12,3 +12,5 @@ create table if not exists readings (
 
 create index if not exists readings_created_at_idx
 on readings (created_at desc);
+
+alter table readings disable row level security;
