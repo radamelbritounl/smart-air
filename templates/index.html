@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Air</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Smart Air</h1>
+      <p>Monitoreo basico de aire, UV y voltaje</p>
+    </div>
+    <span id="status">Actualizando...</span>
+  </header>
+
+  <main>
+    <section class="metrics">
+      <article>
+        <span>MQ135 real</span>
+        <strong id="mqRaw">--</strong>
+      </article>
+      <article>
+        <span>MQ135 x10</span>
+        <strong id="mqScaled">--</strong>
+      </article>
+      <article>
+        <span>Nivel</span>
+        <strong id="airLevel">--</strong>
+      </article>
+      <article>
+        <span>UV</span>
+        <strong id="uvIndex">--</strong>
+      </article>
+      <article>
+        <span>Voltaje</span>
+        <strong id="voltage">--</strong>
+      </article>
+    </section>
+
+    <section class="traffic">
+      <div id="green" class="light"></div>
+      <div id="yellow" class="light"></div>
+      <div id="red" class="light"></div>
+    </section>
+
+    <section class="charts">
+      <article>
+        <h2>Ultimas horas</h2>
+        <img id="hourlyChart" src="/plot/hourly.svg" alt="Grafica de las ultimas horas">
+      </article>
+      <article>
+        <h2>Promedio diario - ultimos 7 dias</h2>
+        <img id="dailyChart" src="/plot/daily.svg" alt="Grafica de promedios diarios">
+      </article>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

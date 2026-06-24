@@ -1,0 +1,151 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  --bg: #f4f7f8;
+  --ink: #162022;
+  --muted: #647174;
+  --line: #d7e0e2;
+  --panel: #ffffff;
+  --green: #23a455;
+  --yellow: #d8a313;
+  --red: #c83d32;
+  --blue: #2f6fbd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  background: #203134;
+  color: white;
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.topbar p {
+  margin-top: 4px;
+  color: #c9d6d8;
+}
+
+#status {
+  font-size: 14px;
+  color: #c9d6d8;
+}
+
+main {
+  width: min(1100px, calc(100% - 24px));
+  margin: 20px auto;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.metrics article,
+.charts article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.metrics span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metrics strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+}
+
+.traffic {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 14px;
+  background: #20292b;
+  border-radius: 8px;
+}
+
+.light {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #5f686a;
+  opacity: 0.35;
+}
+
+.light.on {
+  opacity: 1;
+}
+
+#green.on {
+  background: var(--green);
+}
+
+#yellow.on {
+  background: var(--yellow);
+}
+
+#red.on {
+  background: var(--red);
+}
+
+.charts {
+  display: grid;
+  gap: 16px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  background: #fbfdfd;
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topbar {
+    display: block;
+  }
+
+  #status {
+    display: block;
+    margin-top: 10px;
+  }
+}
