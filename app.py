@@ -252,6 +252,22 @@ def api_daily():
     return jsonify(store.daily())
 
 
+@app.get("/api/config")
+def api_config():
+    supabase_url = os.getenv("SUPABASE_URL", "")
+    supabase_key = os.getenv("SUPABASE_KEY", "")
+    return jsonify(
+        {
+            "supabase_url": supabase_url,
+            "supabase_key_present": bool(supabase_key),
+            "supabase_key_length": len(supabase_key),
+            "supabase_key_start": supabase_key[:12] if supabase_key else "",
+            "supabase_key_end": supabase_key[-8:] if supabase_key else "",
+            "storage": "supabase" if supabase_url and supabase_key else "sqlite",
+        }
+    )
+
+
 @app.get("/plot/hourly.svg")
 def plot_hourly():
     return Response(svg_chart(store.hourly(), "Promedio por hora"), mimetype="image/svg+xml")
